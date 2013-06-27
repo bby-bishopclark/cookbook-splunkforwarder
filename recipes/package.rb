@@ -80,8 +80,10 @@ end
 package package_name do
   case node['platform']
   when 'centos', 'redhat', 'fedora'
+    options node['splunkforwarder']['install_options']
     provider Chef::Provider::Package::Rpm
   when 'debian', 'ubuntu'
+    options node['splunkforwarder']['install_options']
     provider Chef::Provider::Package::Dpkg
   end
 
