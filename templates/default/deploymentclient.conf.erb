@@ -1,0 +1,5 @@
+[deployment-client]
+
+[target-broker:deploymentServer]
+targetUri = <%= node[:splunkforwarder][:deploymentserver][:hostname] %>:<%= node[:splunkforwarder][:deploymentserver][:port] %>
+phoneHomeIntervalInSecs = <%= node[:splunkforwarder][:deploymentserver][:phoneHomeIntervalInSecs] %>
