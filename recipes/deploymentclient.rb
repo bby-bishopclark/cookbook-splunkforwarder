@@ -9,10 +9,12 @@
 # License:: Apache License 2.0
 #
 
-template "deploymentclient.conf" do
-  path "/opt/splunkforwarder/etc/system/local/deploymentclient.conf"
-  owner "root"
-  group "root"
-  mode 0644
-  notifies :restart, "service[splunk]"
+if node['splunkforwarder']['deploymentserver']['hostname'].length > 0
+  template "deploymentclient.conf" do
+    path "/opt/splunkforwarder/etc/system/local/deploymentclient.conf"
+    owner "root"
+    group "root"
+    mode 0644
+    notifies :restart, "service[splunk]"
+  end
 end
