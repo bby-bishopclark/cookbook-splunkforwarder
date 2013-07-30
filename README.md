@@ -20,13 +20,12 @@ Required Attributes
 The following Required Attributes have default settings, see
 `attributes/default.rb`:
 
-* `node['splunkforwarder']['download_url']` - URL to the splunkforwarder
-  download site.
-* `node['splunkforwarder']['build']` - Build Number (CL#) of
-  splunkforwarder package to install.
-
-* `node['splunkforwarder']['version']` - Version of splunkforwarder
-  package to install.
+* `node['splunkforwarder']['download_url']` - URL to the splunkforwarder download site.
+* `node['splunkforwarder']['build']` - Build Number (CL#) of splunkforwarder package to install.
+* `node['splunkforwarder']['version']` - Version of splunkforwarder package to install.
+* `node['splunkforwarder']['deploymentserver']['hostname']` - Hostname of your deployment server
+* `node['splunkforwarder']['deploymentserver']['port']` - Splunk port on your deployment server
+* `node['splunkforwarder']['deploymentserver']['phoneHomeIntervalInSecs']` - Deployment server check-in interval
 
 
 Usage

@@ -12,3 +12,4 @@
 
 include_recipe 'splunkforwarder::package'
 include_recipe 'splunkforwarder::service'
+include_recipe 'splunkforwarder::deploymentclient'

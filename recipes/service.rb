@@ -10,9 +10,13 @@
 #
 
 
-execute '/opt/splunkforwarder/bin/splunk enable boot-start --accept-license' +
-    ' --answer-yes' do
-  not_if{ File.symlink?('/etc/rc4.d/S20splunk') }
+execute '/opt/splunkforwarder/bin/splunk enable boot-start --accept-license --answer-yes' do
+  case node['platform_family']
+  when 'rhel'
+    not_if{ File.symlink?('/etc/rc4.d/S90splunk') }
+  else
+    not_if{ File.symlink?('/etc/rc4.d/S20splunk') }
+  end
 end
 
 

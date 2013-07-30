@@ -1,0 +1,82 @@
+diff --git a/README.md b/README.md
+index 020f3f9..ad5fb3f 100644
+--- a/README.md
++++ b/README.md
+@@ -20,13 +20,12 @@ Required Attributes
+ The following Required Attributes have default settings, see
+ `attributes/default.rb`:
+ 
+-* `node['splunkforwarder']['download_url']` - URL to the splunkforwarder
+-  download site.
+-* `node['splunkforwarder']['build']` - Build Number (CL#) of
+-  splunkforwarder package to install.
+-
+-* `node['splunkforwarder']['version']` - Version of splunkforwarder
+-  package to install.
++* `node['splunkforwarder']['download_url']` - URL to the splunkforwarder download site.
++* `node['splunkforwarder']['build']` - Build Number (CL#) of splunkforwarder package to install.
++* `node['splunkforwarder']['version']` - Version of splunkforwarder package to install.
++* `node['splunkforwarder']['deploymentserver']['hostname']` - Hostname of your deployment server
++* `node['splunkforwarder']['deploymentserver']['port']` - Splunk port on your deployment server
++* `node['splunkforwarder']['deploymentserver']['phoneHomeIntervalInSecs']` - Deployment server check-in interval
+ 
+ 
+ Usage
+diff --git a/attributes/default.rb b/attributes/default.rb
+index 93d516f..f518d7f 100644
+--- a/attributes/default.rb
++++ b/attributes/default.rb
+@@ -12,3 +12,6 @@
+ default['splunkforwarder']['download_url'] = 'http://download.splunk.com/releases'
+ default['splunkforwarder']['build'] = '140868'
+ default['splunkforwarder']['version'] = '5.0'
++default['splunkforwarder']['deploymentserver']['hostname'] = ''
++default['splunkforwarder']['deploymentserver']['port'] = '8089'
++default['splunkforwarder']['deploymentserver']['phoneHomeIntervalInSecs'] = '86400'
+diff --git a/metadata.rb b/metadata.rb
+index 6d206b9..ab51edb 100644
+--- a/metadata.rb
++++ b/metadata.rb
+@@ -1,15 +1,11 @@
+-version '1.0.0'
+-
+-description 'Installs & Configures Splunk Forwarder'
+-
+-maintainer 'Greg Albrecht'
++name             'splunkforwarder'
++maintainer       'Greg Albrecht'
+ maintainer_email 'gba@splunk.com'
+-license 'Apache License 2.0'
+-
++license          'Apache License 2.0'
++description      'Installs & Configures Splunk Forwarder'
++long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
++version          '1.1.0'
+ 
+ %w{redhat centos fedora debian suse ubuntu}.each do |os|
+   supports os
+ end
+-
+-
+-long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+diff --git a/recipes/service.rb b/recipes/service.rb
+index 44179fe..89d79fa 100644
+--- a/recipes/service.rb
++++ b/recipes/service.rb
+@@ -10,9 +10,13 @@
+ #
+ 
+ 
+-execute '/opt/splunkforwarder/bin/splunk enable boot-start --accept-license' +
+-    ' --answer-yes' do
+-  not_if{ File.symlink?('/etc/rc4.d/S20splunk') }
++execute '/opt/splunkforwarder/bin/splunk enable boot-start --accept-license --answer-yes' do
++  case node['platform_family']
++  when 'rhel'
++    not_if{ File.symlink?('/etc/rc4.d/S90splunk') }
++  else
++    not_if{ File.symlink?('/etc/rc4.d/S20splunk') }
++  end
+ end
+ 
+ 
