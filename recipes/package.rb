@@ -22,7 +22,7 @@ package_prefix = [
 
 
 package_suffix = value_for_platform(
-  ['centos', 'redhat', 'suse', 'fedora'] => {
+  ['centos', 'redhat', 'suse', 'fedora', 'amazon'] => {
     'default' => if node['kernel']['machine'] == 'x86_64'
       '-linux-2.6-x86_64.rpm'
     else
