@@ -9,7 +9,7 @@
 # License:: Apache License 2.0
 #
 
-args = node[:splunkforwarder][:args].join(" --")
+args = node[:splunkforwarder][:args].join(" ")
 
 execute "#{node[:splunkforwarder][:install_path]}/bin/splunk enable boot-start #{args}" do
   not_if{ File.symlink?('/etc/rc4.d/S20splunk') }

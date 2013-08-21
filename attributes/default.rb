@@ -15,5 +15,5 @@ default['splunkforwarder']['version'] = '5.0'
 
 default['splunkforwarder']['install_path'] = '/opt/splunkforwarder'
 
-default['splunkforwarder']['args'] = [ 'answer-yes',
-                                       'accept-license' ]
+default['splunkforwarder']['args'] = [ '--answer-yes',
+                                       '--accept-license' ]
