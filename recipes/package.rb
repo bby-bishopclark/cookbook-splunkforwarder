@@ -79,7 +79,7 @@ end
 
 package package_name do
   case node['platform']
-  when 'centos', 'redhat', 'fedora'
+  when 'centos', 'redhat', 'fedora', 'suse', 'amazon'
     provider Chef::Provider::Package::Rpm
   when 'debian', 'ubuntu'
     provider Chef::Provider::Package::Dpkg
