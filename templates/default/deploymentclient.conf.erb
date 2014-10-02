@@ -1,4 +1,5 @@
 [deployment-client]
+className = <%= node[:splunkforwarder][:deploymentclient][:class_name] %>
 
 [target-broker:deploymentServer]
 targetUri = <%= node[:splunkforwarder][:deploymentserver][:hostname] %>:<%= node[:splunkforwarder][:deploymentserver][:port] %>

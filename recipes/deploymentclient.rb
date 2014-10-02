@@ -9,7 +9,7 @@
 # License:: Apache License 2.0
 #
 
-if node['splunkforwarder']['deploymentserver']['hostname'].length > 0
+if !node['splunkforwarder']['deploymentserver']['hostname'].nil?
   template "deploymentclient.conf" do
     path "/opt/splunkforwarder/etc/system/local/deploymentclient.conf"
     owner "root"
