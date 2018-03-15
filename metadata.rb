@@ -1,4 +1,5 @@
-version '1.0.0'
+name 'splunkforwarder'
+version '1.0.1'
 
 description 'Installs & Configures Splunk Forwarder'
 
@@ -7,7 +8,7 @@ maintainer_email 'gba@splunk.com'
 license 'Apache License 2.0'
 
 
-%w{redhat centos fedora debian suse ubuntu}.each do |os|
+%w{redhat centos fedora debian suse amazon ubuntu}.each do |os|
   supports os
 end
 

@@ -9,9 +9,9 @@
 # License:: Apache License 2.0
 #
 
+args = node[:splunkforwarder][:args].join(" ")
 
-execute '/opt/splunkforwarder/bin/splunk enable boot-start --accept-license' +
-    ' --answer-yes' do
+execute "#{node[:splunkforwarder][:install_path]}/bin/splunk enable #{args}" do
   not_if{ File.symlink?('/etc/rc4.d/S20splunk') }
 end
 

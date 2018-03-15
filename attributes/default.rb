@@ -12,3 +12,9 @@
 default['splunkforwarder']['download_url'] = 'http://download.splunk.com/releases'
 default['splunkforwarder']['build'] = '140868'
 default['splunkforwarder']['version'] = '5.0'
+
+default['splunkforwarder']['install_path'] = '/opt/splunkforwarder'
+
+default['splunkforwarder']['args'] = [ 'boot-start',
+                                       '--answer-yes',
+                                       '--accept-license' ]
