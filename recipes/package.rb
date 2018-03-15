@@ -22,7 +22,7 @@ package_prefix = [
 
 
 package_suffix = value_for_platform(
-  ['centos', 'redhat', 'suse', 'fedora'] => {
+  ['centos', 'redhat', 'suse', 'fedora', 'amazon'] => {
     'default' => if node['kernel']['machine'] == 'x86_64'
       '-linux-2.6-x86_64.rpm'
     else
@@ -79,7 +79,7 @@ end
 
 package package_name do
   case node['platform']
-  when 'centos', 'redhat', 'fedora'
+  when 'centos', 'redhat', 'fedora', 'suse', 'amazon'
     provider Chef::Provider::Package::Rpm
   when 'debian', 'ubuntu'
     provider Chef::Provider::Package::Dpkg
