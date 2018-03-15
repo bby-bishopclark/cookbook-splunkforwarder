@@ -12,3 +12,6 @@
 default['splunkforwarder']['download_url'] = 'http://download.splunk.com/releases'
 default['splunkforwarder']['build'] = '140868'
 default['splunkforwarder']['version'] = '5.0'
+default['splunkforwarder']['deploymentserver']['hostname'] = ''
+default['splunkforwarder']['deploymentserver']['port'] = '8089'
+default['splunkforwarder']['deploymentserver']['phoneHomeIntervalInSecs'] = '120'

@@ -10,7 +10,7 @@
 TMP_TEMPLATE = 'sf-cbs.XXXXXXXXXX'
 
 GIT_TAG := $(shell git describe --abbrev=0 --tags)
-export CB_TMP := $(shell mktemp -d $(TMP_TEMPLATE) --tmpdir=/tmp)
+export CB_TMP := $(shell mktemp -d /tmp/$(TMP_TEMPLATE))
 
 SF_TMP = $(CB_TMP)/splunkforwarder
 
@@ -39,6 +39,9 @@ vagrant: sync_cookbook vagrant_reload
 
 vagrant_up:
 	vagrant up
+
+vagrant_provision: sync_cookbook
+	vagrant provision
 
 vagrant_reload:
 	vagrant reload
